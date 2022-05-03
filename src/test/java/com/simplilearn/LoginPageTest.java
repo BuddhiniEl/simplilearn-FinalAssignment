@@ -42,6 +42,33 @@ public class LoginPageTest {
 		loginPage.logout();
 	}
 	
+	@Test
+	public void invalidUsername() throws Exception {
+		new VisitMedicare(driver);
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login("kn1@gmail.com", "12345");
+		Thread.sleep(1000);
+		assertEquals(loginPage.getAlert(), "Username and Password is invalid!");
+	}
+	
+	@Test
+	public void invalidPassword() throws Exception {
+		new VisitMedicare(driver);
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login("kn@gmail.com", "123456");
+		Thread.sleep(1000);
+		assertEquals(loginPage.getAlert(), "Username and Password is invalid!");
+	}
+	
+	@Test
+	public void invalidEmailAddress() throws Exception {
+		new VisitMedicare(driver);
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login("kn", "123456");
+		Thread.sleep(1000);
+		assertEquals(loginPage.getErrorMessage(), "Please enter a valid email address!");
+	}
+	
 	@AfterTest
 	public void tearDown() {
 		driver.quit();

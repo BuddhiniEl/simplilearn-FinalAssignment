@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.simplilearn.ActionUtils;
+
 public class LoginPage {
 	WebDriver driver = null;
 	
@@ -22,8 +24,11 @@ public class LoginPage {
 	
 	By byUserName = By.cssSelector("#userModel > a");
 	
-	
 	By byLogoutButton = By.id("logout");
+	
+	By byErrorMessage = By.id("username-error");
+	
+	By byAlert = By.className("alert");
 	
 	public LoginPage(WebDriver driver){
 		this.driver = driver;
@@ -56,14 +61,24 @@ public class LoginPage {
 		return null;
 	}
 	
+	public String getErrorMessage() {
+		return driver.findElement(byErrorMessage).getText();
+	}
+	
+	public String getAlert() {
+		return driver.findElement(byAlert).getText();
+	}
+	
 	public void logout() throws InterruptedException {
+		driver.navigate().refresh();
+		Thread.sleep(1000);
 		WebElement userName = driver.findElement(byUserName);
 		System.out.println(userName.getText());
 		Actions action = new Actions(driver);
 		action.moveToElement(userName).click().build().perform();
-		Thread.sleep(100);
+		Thread.sleep(200);
 		WebElement ele = driver.findElement(byLogoutButton);
-		ele.click();
-		Thread.sleep(100);
+		ActionUtils.moveAndClick(driver, ele);
+		Thread.sleep(200);
 	}
 }
