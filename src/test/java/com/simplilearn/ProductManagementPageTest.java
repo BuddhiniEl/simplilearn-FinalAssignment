@@ -51,7 +51,7 @@ public class ProductManagementPageTest {
 		productManagementPage.setDescription("a powerful synthetic opioid analgesic that is similar to morphine");
 		productManagementPage.setUntiPrice("40.0");
 		productManagementPage.setQuantity("" + (5 + prodCount));
-		productManagementPage.setFile("/home/rube/Pictures/FentanylSmall.jpg");
+		productManagementPage.setFile("FentanylSmall.jpg");
 		productManagementPage.setCategoryId("Analgesics");
 		productManagementPage.submit();
 		
