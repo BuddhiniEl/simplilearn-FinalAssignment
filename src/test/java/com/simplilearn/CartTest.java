@@ -2,11 +2,7 @@ package com.simplilearn;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -16,7 +12,6 @@ import com.simplilearn.medicare.pageObjects.CheckoutPage;
 import com.simplilearn.medicare.pageObjects.InvoicePage;
 import com.simplilearn.medicare.pageObjects.LoginPage;
 import com.simplilearn.medicare.pageObjects.ProductViewPage;
-import com.simplilearn.model.Item;
 
 public class CartTest {
 	WebDriver driver = null;

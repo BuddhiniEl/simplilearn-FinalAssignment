@@ -4,13 +4,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.simplilearn.medicare.pageObjects.LoginPage;
-import com.simplilearn.medicare.pageObjects.SearchPage;
 
 @Test
 public class LoginPageTest {

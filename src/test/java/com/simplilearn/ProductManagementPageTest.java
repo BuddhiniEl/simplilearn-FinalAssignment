@@ -6,14 +6,12 @@ import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.simplilearn.medicare.pageObjects.LoginPage;
 import com.simplilearn.medicare.pageObjects.ProductManagementPage;
-import com.simplilearn.medicare.pageObjects.SearchPage;
 
 @Test
 public class ProductManagementPageTest {
