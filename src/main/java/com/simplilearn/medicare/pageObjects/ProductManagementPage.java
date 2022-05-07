@@ -5,6 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 import com.simplilearn.ActionUtils;
 
@@ -67,7 +69,12 @@ public class ProductManagementPage {
 	}
 
 	public void setFile(String file) {
-		driver.findElement(byFile).sendKeys(file);
+		ClassLoader classLoader = getClass().getClassLoader();
+		String path = classLoader.getResource(file).getPath();
+
+		WebElement addFile = driver.findElement(byFile);
+		((RemoteWebElement) addFile).setFileDetector(new LocalFileDetector());
+		addFile.sendKeys(path);
 	}
 	
 	public void setCategoryId(String categoryId) {
