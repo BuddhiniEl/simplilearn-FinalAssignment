@@ -1,17 +1,11 @@
 package com.simplilearn.medicare.pageObjects;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.simplilearn.ActionUtils;
 import com.simplilearn.DataUtils;
@@ -35,12 +29,13 @@ public class CartPage {
 	
 
 	public void continueShopping() {
-		new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(byContinueShopping));
+		ActionUtils.wait(driver, byContinueShopping);
 		WebElement cont= driver.findElement(byContinueShopping);
 		ActionUtils.jsClick(driver, cont);
 	}
 	
 	public void checkout() {
+		ActionUtils.wait(driver, byCheckout);
 		WebElement cont= driver.findElement(byCheckout);
 		ActionUtils.jsClick(driver, cont);
 	}
@@ -59,10 +54,6 @@ public class CartPage {
 					);
 			
 			items.add(item);
-//			System.out.println(cols.get(0).findElement(By.tagName("h4")).getText());
-//			System.out.println(cols.get(1).getText());
-//			System.out.println(cols.get(2).findElement(By.tagName("input")).getAttribute("value"));
-//			System.out.println(cols.get(3).getText());
 		}
 		
 		return items;
