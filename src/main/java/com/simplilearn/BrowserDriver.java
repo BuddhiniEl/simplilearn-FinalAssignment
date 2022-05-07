@@ -14,7 +14,7 @@ public class BrowserDriver {
 	
 	public WebDriver getDriver() throws MalformedURLException {
 		if (driver == null) {
-	         driver = getLocalDriver();
+	         driver = getRemoteDriver();
 		}
 		return driver;
 	}
