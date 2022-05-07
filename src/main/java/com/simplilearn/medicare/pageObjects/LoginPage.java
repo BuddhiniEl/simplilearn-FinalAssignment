@@ -39,7 +39,7 @@ public class LoginPage {
 	
 	public void login(String userName, String password) throws InterruptedException {
 		loadLogin();
-		Thread.sleep(1000);
+		ActionUtils.wait(driver, byUserNameInput);
 		WebElement userNameElement = driver.findElement(byUserNameInput);
 		userNameElement.sendKeys(userName);
 		WebElement passElement = driver.findElement(byPasswordInput);
@@ -69,14 +69,13 @@ public class LoginPage {
 	
 	public void logout() throws InterruptedException {
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+		
+		ActionUtils.wait(driver, byUserName);
 		WebElement userName = driver.findElement(byUserName);
-		System.out.println(userName.getText());
 		Actions action = new Actions(driver);
 		action.moveToElement(userName).click().build().perform();
-		Thread.sleep(200);
-		WebElement ele = driver.findElement(byLogoutButton);
-		ActionUtils.moveAndClick(driver, ele);
+		
+		ActionUtils.jsWaitClick(driver, byLogoutButton);
 		Thread.sleep(200);
 	}
 }
