@@ -1,5 +1,7 @@
 package com.simplilearn;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -10,9 +12,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.simplilearn.medicare.pageObjects.CartPage;
+import com.simplilearn.medicare.pageObjects.CheckoutPage;
+import com.simplilearn.medicare.pageObjects.InvoicePage;
 import com.simplilearn.medicare.pageObjects.LoginPage;
 import com.simplilearn.medicare.pageObjects.ProductViewPage;
-import com.simplilearn.model.CartItem;
+import com.simplilearn.model.Item;
 
 public class CartTest {
 	WebDriver driver = null;
@@ -37,18 +41,31 @@ public class CartTest {
 		productViewPage.addToCart("Diclofenac");
 		
 		
-		Thread.sleep(500);
+//		Thread.sleep(500);
 		
 		cartPage.continueShopping();
 		Thread.sleep(500);
 		productViewPage.addToCart("Amoxicillin");
 		Thread.sleep(200);
 		
-		List<CartItem> items = cartPage.getItems();
-		for(CartItem item:items) {
-			System.out.println(item.getName());
-			System.out.println(item.getPrice());
-		}
+		cartPage.checkout();
+		
+		CheckoutPage checkoutPage = new CheckoutPage(driver);
+		checkoutPage.select();
+		
+		checkoutPage.setCardNumber("1234123412341234");
+		checkoutPage.setExpiryMonth("12");
+		checkoutPage.setExpiryYear("23");
+		checkoutPage.setCvCode("345");
+		checkoutPage.pay();
+		
+		InvoicePage invoicePage = new InvoicePage(driver);
+		assertEquals(invoicePage.getTitle(), "Invoice");
+		assertEquals(invoicePage.getItems().size(), 2);
+
+		assertEquals(invoicePage.getItems().get(0).getName(), "Diclofenac");
+		assertEquals(invoicePage.getItems().get(1).getName(), "Amoxicillin");
+		invoicePage.contitnueShopping();
 	}
 	
 	@AfterTest

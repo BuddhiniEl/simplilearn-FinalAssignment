@@ -1,11 +1,11 @@
 package com.simplilearn.model;
 
-public class CartItem {
+public class Item {
 	String name;
 	String price;
 	int quantity;
 	String subTotal;
-	public CartItem(String name, String price, int quantity, String subTotal) {
+	public Item(String name, String price, int quantity, String subTotal) {
 		super();
 		this.name = name;
 		this.price = price;
