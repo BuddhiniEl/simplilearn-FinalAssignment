@@ -33,6 +33,7 @@ public class LoginPage {
 	}
 	
 	public void loadLogin() {
+		ActionUtils.wait(driver, byLoadLogin);
 		WebElement login = driver.findElement(byLoadLogin);
 		login.click();
 	}
@@ -68,14 +69,14 @@ public class LoginPage {
 	}
 	
 	public void logout() throws InterruptedException {
-		driver.navigate().refresh();
-		
-		ActionUtils.wait(driver, byUserName);
-		WebElement userName = driver.findElement(byUserName);
-		Actions action = new Actions(driver);
-		action.moveToElement(userName).click().build().perform();
-		
-		ActionUtils.jsWaitClick(driver, byLogoutButton);
+ 		driver.navigate().refresh();
+		Thread.sleep(1000);
+ 		WebElement userName = driver.findElement(byUserName);
+ 		Actions action = new Actions(driver);
+ 		action.moveToElement(userName).click().build().perform();
 		Thread.sleep(200);
+		WebElement ele = driver.findElement(byLogoutButton);
+		ActionUtils.moveAndClick(driver, ele);
+ 		Thread.sleep(200);
 	}
 }

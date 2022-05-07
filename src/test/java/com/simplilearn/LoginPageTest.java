@@ -1,6 +1,7 @@
 package com.simplilearn;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -30,6 +31,9 @@ public class LoginPageTest {
 		Thread.sleep(1000);
 		assertEquals(loginPage.getUserName(), "Vikas Kashyap");
 		loginPage.logout();
+		Thread.sleep(1000);
+
+		assertNull(loginPage.getUserName());
 	}
 
 	@Test
@@ -40,6 +44,9 @@ public class LoginPageTest {
 		Thread.sleep(1000);
 		assertEquals(loginPage.getUserName(), "Kavita Nigam");
 		loginPage.logout();
+		Thread.sleep(1000);
+
+		assertNull(loginPage.getUserName());
 	}
 	
 	@Test

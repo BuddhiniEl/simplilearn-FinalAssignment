@@ -27,19 +27,20 @@ public class ProductManagementPageTest {
 	By byFile = By.id("file");
 	By byCategoryId = By.id("categoryId");
 	By bySubmit = By.cssSelector("#product .btn-primary");
+	LoginPage loginPage;
 	
 	@BeforeTest
 	public void setUp() throws Exception {
 		BrowserDriver browserDriver = new BrowserDriver();
 		driver = browserDriver.getDriver();
+		new VisitMedicare(driver);
+		loginPage = new LoginPage(driver);
+		loginPage.login("vk@gmail.com", "admin");
 	}
 	
 	
 	@Test
 	public void addProduct() throws Exception {
-		new VisitMedicare(driver);
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.login("vk@gmail.com", "admin");
 		Thread.sleep(1000);
 		ProductManagementPage productManagementPage = new ProductManagementPage(driver);
 		productManagementPage.visit();
@@ -58,14 +59,10 @@ public class ProductManagementPageTest {
 		
 		Thread.sleep(100);
 		assertTrue(productManagementPage.hasProduct(prodName), "Faield to add product " + prodName);
-		loginPage.logout();
 	}
 
 	@Test
 	public void editProduct() throws Exception{
-		new VisitMedicare(driver);
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.login("vk@gmail.com", "admin");
 		Thread.sleep(1000);
 		ProductManagementPage productManagementPage = new ProductManagementPage(driver);
 		productManagementPage.visit();
@@ -87,15 +84,11 @@ public class ProductManagementPageTest {
 		productManagementPage.editProductByName("Aceclofenac");
 		Thread.sleep(200);
 		assertEquals(productManagementPage.getUnitPrice(), "40.0");
-		loginPage.logout();
 		
 	}
 
 	@Test
 	public void activateProduct() throws Exception{
-		new VisitMedicare(driver);
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.login("vk@gmail.com", "admin");
 		Thread.sleep(1000);
 		ProductManagementPage productManagementPage = new ProductManagementPage(driver);
 		productManagementPage.visit();
@@ -111,11 +104,11 @@ public class ProductManagementPageTest {
 		driver.navigate().refresh();
 		Thread.sleep(100);
 		assertTrue(productManagementPage.isActive("Paracetamol"));
-		loginPage.logout();
 	}
 		
 	@AfterTest
-	public void tearDown() {
+	public void tearDown() throws InterruptedException {
+		loginPage.logout();
 		driver.quit();
 	}
 }
