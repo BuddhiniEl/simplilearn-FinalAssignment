@@ -1,4 +1,4 @@
-package com.simplilearn.swiggy.pageObjects;
+package com.simplilearn.medicare.pageObjects;
 
 import java.util.List;
 

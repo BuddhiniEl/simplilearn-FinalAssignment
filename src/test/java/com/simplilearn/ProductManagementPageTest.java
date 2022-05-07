@@ -11,9 +11,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.simplilearn.swiggy.pageObjects.LoginPage;
-import com.simplilearn.swiggy.pageObjects.ProductManagementPage;
-import com.simplilearn.swiggy.pageObjects.SearchPage;
+import com.simplilearn.medicare.pageObjects.LoginPage;
+import com.simplilearn.medicare.pageObjects.ProductManagementPage;
+import com.simplilearn.medicare.pageObjects.SearchPage;
 
 @Test
 public class ProductManagementPageTest {
