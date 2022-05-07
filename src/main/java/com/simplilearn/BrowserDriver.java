@@ -22,7 +22,7 @@ public class BrowserDriver {
 	private WebDriver getRemoteDriver() throws MalformedURLException {
 		 String hub = "http://localhost:4444";
          DesiredCapabilities cap = new DesiredCapabilities();
-         cap.setBrowserName("chrome");
+         cap.setBrowserName("firefox");
          
          return new RemoteWebDriver(new URL(hub), cap);
 	}
